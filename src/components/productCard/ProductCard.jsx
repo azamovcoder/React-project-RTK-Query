@@ -8,12 +8,17 @@ import {
   FaStar,
 } from "react-icons/fa6";
 import React, { Fragment } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 import { IoCartOutline } from "react-icons/io5";
 import { NavLink } from "react-router-dom";
+import { toggleHeart } from "../../context/slices/wishlistSlice";
 
 const ProductCard = ({ image, title, rating, price, product, id }) => {
   // console.log(data);
+  const dispatch = useDispatch();
+  const wishlistData = useSelector((state) => state.wishlist.value);
+
   const getRating = () => {
     let res = [];
     for (let i = 0; i < Math.trunc(rating); i++) {
@@ -35,8 +40,15 @@ const ProductCard = ({ image, title, rating, price, product, id }) => {
         <div className="product__card__img">
           <img src={image} alt="" />
           <div className="product__card__buttons">
-            <button>
-              <FaRegHeart />
+            <button
+              className="product__item__like-btn"
+              onClick={() => dispatch(toggleHeart(product))}
+            >
+              {wishlistData.some((el) => el.id === product.id) ? (
+                <FaHeart color="crimson" />
+              ) : (
+                <FaRegHeart />
+              )}
             </button>
             <button>
               <IoCartOutline />
@@ -64,5 +76,4 @@ const ProductCard = ({ image, title, rating, price, product, id }) => {
     </Fragment>
   );
 };
-
 export default ProductCard;

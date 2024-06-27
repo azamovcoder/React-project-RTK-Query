@@ -10,7 +10,6 @@ const wishlistSlice = createSlice({
   reducers: {
     toggleHeart: (state, action) => {
       let index = state.value.findIndex((i) => i._id === action.payload._id);
-      console.log(state.value);
       if (index < 0) {
         state.value = [...state.value, action.payload];
       } else {
