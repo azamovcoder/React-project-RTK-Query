@@ -1,3 +1,5 @@
+import featuredImg1 from "../assets/images/featured1.png";
+import featuredImg2 from "../assets/icons/rate.svg";
 import lastImg1 from "../assets/icons/last1.svg";
 import lastImg2 from "../assets/icons/last2.svg";
 import lastImg3 from "../assets/icons/last3.svg";
@@ -69,9 +71,36 @@ export const LatestNewsData = [
   },
   {
     id: 3,
-    img: lastImg1,
+    img: lastImg3,
     title: "HR Community",
     date: "01 Jan, 2015",
     desc: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+  },
+];
+
+export const FeaturedProductsData = [
+  {
+    id: 1,
+    title: "Blue Swade Nike Sneakers",
+    img: featuredImg1,
+    ratingImg: featuredImg2,
+    price: 499,
+    oldPrice: 599,
+  },
+  {
+    id: 2,
+    title: "Blue Swade Nike Sneakers",
+    img: featuredImg1,
+    ratingImg: featuredImg2,
+    price: 499,
+    oldPrice: 599,
+  },
+  {
+    id: 3,
+    title: "Blue Swade Nike Sneakers",
+    img: featuredImg1,
+    ratingImg: featuredImg2,
+    price: 499,
+    oldPrice: 599,
   },
 ];

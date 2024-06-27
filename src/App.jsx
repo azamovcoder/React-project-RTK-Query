@@ -21,7 +21,7 @@ function App() {
           <Route path="wishlist" element={<Wishlist />} />
           <Route path="contact" element={<Contact />} />
           <Route path="login" element={<Login />} />
-          <Route path="singlePage" element={<SinglePage />} />
+          <Route path="singlePage/:Id" element={<SinglePage />} />
         </Route>
       </Routes>
     </Fragment>

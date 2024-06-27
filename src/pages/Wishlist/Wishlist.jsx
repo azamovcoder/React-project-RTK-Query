@@ -1,5 +1,3 @@
-import "./Wishlist.scss";
-
 import React from "react";
 
 const Wishlist = () => {
