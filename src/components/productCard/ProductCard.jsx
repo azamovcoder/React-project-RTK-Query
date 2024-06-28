@@ -15,30 +15,38 @@ import { NavLink } from "react-router-dom";
 import { toggleHeart } from "../../context/slices/wishlistSlice";
 
 const ProductCard = ({ image, title, rating, price, product, id }) => {
-  // console.log(data);
   const dispatch = useDispatch();
   const wishlistData = useSelector((state) => state.wishlist.value);
 
   const getRating = () => {
     let res = [];
     for (let i = 0; i < Math.trunc(rating); i++) {
-      res.push(<FaStar className="product__card__rating__star" />);
+      res.push(
+        <FaStar key={`full-${i}`} className="product__card__rating__star" />
+      );
     }
     if (rating % 1 > 0.4) {
-      res.push(<FaRegStarHalfStroke className="product__card__rating__star" />);
+      res.push(
+        <FaRegStarHalfStroke
+          key="half"
+          className="product__card__rating__star"
+        />
+      );
     }
     for (let i = Math.round(rating); i < 6; i++) {
-      res.push(<FaRegStar className="product__card__rating__star" />);
+      res.push(
+        <FaRegStar key={`empty-${i}`} className="product__card__rating__star" />
+      );
     }
 
     return res;
   };
-  let date = new Date();
+
   return (
     <Fragment>
       <div className="product__card">
         <div className="product__card__img">
-          <img src={image} alt="" />
+          <img src={image} alt="product.img" />
           <div className="product__card__buttons">
             <button
               className="product__item__like-btn"
@@ -55,15 +63,9 @@ const ProductCard = ({ image, title, rating, price, product, id }) => {
             </button>
           </div>
         </div>
-        <NavLink
-          to={`singlePage/${id}`}
-          key={rating}
-          className="product__card__info"
-        >
+        <NavLink to={`/singlePage/${id}`} className="product__card__info">
           <h4>{title}</h4>
-          <span key={date} className="product__card__rating">
-            {getRating()}
-          </span>
+          <span className="product__card__rating">{getRating()}</span>
           <div className="product__card__prices">
             <p className="product__card__prices__price">${price}</p>
             <p className="product__card__prices__old__price">
@@ -76,4 +78,5 @@ const ProductCard = ({ image, title, rating, price, product, id }) => {
     </Fragment>
   );
 };
+
 export default ProductCard;

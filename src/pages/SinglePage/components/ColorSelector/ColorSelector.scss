@@ -1,0 +1,60 @@
+.color-selector {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 10px 0;
+}
+
+.color-options {
+  display: flex;
+  gap: 10px;
+}
+
+.color-option {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.color-radio {
+  display: none;
+}
+
+.color-display {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+
+  border: 2px solid transparent;
+  transition: border 0.3s;
+}
+
+.color-display.selected {
+  border: 3px solid #1e90ff; /* Change this to the color you prefer for the border */
+}
+
+.color-display::after {
+  content: "";
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  opacity: 0;
+  transition: opacity 0.3s;
+  position: absolute;
+}
+
+.color-radio:checked + .color-display::after {
+  opacity: 1;
+}
+
+@media (max-width: 350px) {
+  .color-selector {
+    display: flex;
+    align-items: start;
+    flex-direction: column;
+    gap: 20px;
+  }
+}
