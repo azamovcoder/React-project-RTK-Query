@@ -35,16 +35,30 @@ header {
     align-items: center;
     &__list {
       a {
-        padding-top: 8px;
-        font-size: 20px;
+        // padding-top: 8px;
+        font-size: 24px;
         transition: 0.4s;
+        position: relative;
+        sup {
+          position: absolute;
+          top: -3px;
+          right: -4px;
+          font-weight: 400;
+          padding: 2px 5px;
+          font-size: 10px;
+          background: red;
+          color: #fff;
+          border-radius: 50%;
+          width: 18px;
+          text-align: center;
+        }
       }
       a:hover {
-        color: #40bfff;
+        color: red;
       }
       display: flex;
       align-items: center;
-      gap: 5px;
+      gap: 10px;
       &__home {
         display: none;
       }

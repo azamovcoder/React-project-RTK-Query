@@ -7,17 +7,18 @@ import {
   FaRegStarHalfStroke,
   FaStar,
 } from "react-icons/fa6";
+import { IoCart, IoCartOutline } from "react-icons/io5";
 import React, { Fragment } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { IoCartOutline } from "react-icons/io5";
 import { NavLink } from "react-router-dom";
+import { addToCart } from "../../context/slices/cartSlice";
 import { toggleHeart } from "../../context/slices/wishlistSlice";
 
 const ProductCard = ({ image, title, rating, price, product, id }) => {
   const dispatch = useDispatch();
   const wishlistData = useSelector((state) => state.wishlist.value);
-
+  const cartData = useSelector((state) => state.cart.value);
   const getRating = () => {
     let res = [];
     for (let i = 0; i < Math.trunc(rating); i++) {
@@ -58,8 +59,15 @@ const ProductCard = ({ image, title, rating, price, product, id }) => {
                 <FaRegHeart />
               )}
             </button>
-            <button>
-              <IoCartOutline />
+            <button
+              disabled={cartData?.some((el) => el.id === product.id)}
+              onClick={() => dispatch(addToCart(product))}
+            >
+              {cartData?.some((el) => el.id === product.id) ? (
+                <IoCart />
+              ) : (
+                <IoCartOutline />
+              )}
             </button>
           </div>
         </div>

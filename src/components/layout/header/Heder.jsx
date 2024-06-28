@@ -13,6 +13,7 @@ import { FaBars } from "react-icons/fa6";
 import HeaderImg from "../../../assets/icons/Header.svg";
 import { MdOutlineMoreVert } from "react-icons/md";
 import { NavLink } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const Header = () => {
   const [shrink, setShrink] = useState(false);
@@ -24,7 +25,6 @@ const Header = () => {
       setShrink(false);
     }
   };
-  console.log(show);
 
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
@@ -32,6 +32,8 @@ const Header = () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+  let wishlistCount = useSelector((state) => state.wishlist.value).length;
+  let CartCount = useSelector((state) => state.cart.value).length;
   return (
     <Fragment>
       <div className="header container">
@@ -58,11 +60,12 @@ const Header = () => {
               </NavLink>
               <NavLink to={"wishlist"}>
                 <IoHeartOutline />
+                {wishlistCount ? <sup>{wishlistCount}</sup> : <></>}
               </NavLink>
               <NavLink to={"cart"}>
+                {CartCount ? <sup>{CartCount}</sup> : <></>}
                 <IoCartOutline />
               </NavLink>
-              <span>Items</span>
             </div>
             <div className="header__input">
               <input type="text" placeholder="$0.00" />

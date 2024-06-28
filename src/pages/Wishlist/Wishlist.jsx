@@ -1,14 +1,18 @@
+import "./Wishlist.scss";
+
 import React, { Fragment } from "react";
 
+import { NavLink } from "react-router-dom";
 import ProductCard from "../../components/productCard/ProductCard";
 import { useSelector } from "react-redux";
 
 const Wishlist = () => {
   let wishlistData = useSelector((state) => state.wishlist.value);
   console.log(wishlistData);
+
   return (
     <Fragment>
-      <div className="container">
+      <div className=" product__cards container">
         {wishlistData.length ? (
           wishlistData?.map((el) => (
             <ProductCard
@@ -23,11 +27,16 @@ const Wishlist = () => {
           ))
         ) : (
           <>
-            <img
-              style={{ margin: "100px 40% ", width: "300px" }}
-              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUar7NR52hVc6xdZ75PEqkzhZBRAzMNJ3LrxXxYKHGUwTJc8XXeS1hbl33F66HVJe95pQ&usqp=CAU"
-              alt=""
-            />
+            <div className="wishlist__empty">
+              <img
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUar7NR52hVc6xdZ75PEqkzhZBRAzMNJ3LrxXxYKHGUwTJc8XXeS1hbl33F66HVJe95pQ&usqp=CAU"
+                alt=""
+              />
+              <h2>You don't have any favorites yet </h2>
+              <button>
+                <NavLink to={"/"}>Home</NavLink>
+              </button>
+            </div>
           </>
         )}
       </div>
