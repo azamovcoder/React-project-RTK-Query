@@ -1,6 +1,6 @@
 import "./SingleProductDetails.scss";
 
-import React, { Fragment } from "react";
+import React, { Fragment, memo } from "react";
 
 const SingleProductDetails = () => {
   return (
@@ -42,4 +42,4 @@ const SingleProductDetails = () => {
   );
 };
 
-export default SingleProductDetails;
+export default memo(SingleProductDetails);

@@ -1,6 +1,6 @@
 import "./Cart.scss";
 
-import React, { Fragment, useEffect, useState } from "react";
+import React, { Fragment, memo, useEffect, useState } from "react";
 import {
   addToCart,
   decrementCart,
@@ -8,6 +8,7 @@ import {
 } from "../../context/slices/cartSlice";
 import { useDispatch, useSelector } from "react-redux";
 
+import CarModal from "./components/CartModal/CarModal";
 import { NavLink } from "react-router-dom";
 import { VscError } from "react-icons/vsc";
 
@@ -16,7 +17,7 @@ const Cart = () => {
   const [value, setValue] = useState("");
   const [coupon, setCoupon] = useState(0);
   const [totalPrice, setTotalPrice] = useState(0);
-  // console.log(value);
+  const [modal, setModal] = useState(false);
   const cartData = useSelector((state) => state.cart.value);
   console.log(cartData);
 
@@ -35,6 +36,15 @@ const Cart = () => {
       alert("Promocode error");
     }
   };
+  if (modal) {
+    document.body.style.overflow = "hidden";
+  } else {
+    document.body.style.overflow = "auto";
+  }
+
+  useEffect(() => {
+    window.scroll(0, 0);
+  }, []);
 
   return (
     <Fragment>
@@ -118,11 +128,15 @@ const Cart = () => {
                   <h3>Total:</h3>
                   <p>${(totalPrice - coupon).toFixed(2)}</p>
                 </div>
-                <button className="product__carts__total__item__button">
+                <button
+                  className="product__carts__total__item__button"
+                  onClick={() => setModal(true)}
+                >
                   Check out
                 </button>
               </div>
             </div>
+            {modal ? <CarModal setModal={setModal} /> : <></>}
           </>
         ) : (
           <div className="wishlist__empty">
@@ -141,4 +155,4 @@ const Cart = () => {
   );
 };
 
-export default Cart;
+export default memo(Cart);

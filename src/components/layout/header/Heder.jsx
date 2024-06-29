@@ -34,6 +34,7 @@ const Header = () => {
   }, []);
   let wishlistCount = useSelector((state) => state.wishlist.value).length;
   let CartCount = useSelector((state) => state.cart.value).length;
+  const isLogin = useSelector((state) => state.auth.token);
   return (
     <Fragment>
       <div className="header container">
@@ -55,7 +56,7 @@ const Header = () => {
               <NavLink to={"/"} className="header__info__list__home">
                 <IoHomeOutline />
               </NavLink>
-              <NavLink to={"login"}>
+              <NavLink to={"admin"}>
                 <IoPersonOutline />
               </NavLink>
               <NavLink to={"wishlist"}>

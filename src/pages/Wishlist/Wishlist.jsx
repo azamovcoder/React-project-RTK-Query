@@ -1,6 +1,6 @@
 import "./Wishlist.scss";
 
-import React, { Fragment } from "react";
+import React, { Fragment, memo, useEffect } from "react";
 
 import { NavLink } from "react-router-dom";
 import ProductCard from "../../components/productCard/ProductCard";
@@ -9,6 +9,10 @@ import { useSelector } from "react-redux";
 const Wishlist = () => {
   let wishlistData = useSelector((state) => state.wishlist.value);
   console.log(wishlistData);
+
+  useEffect(() => {
+    window.scroll(0, 0);
+  }, []);
 
   return (
     <Fragment>
@@ -44,4 +48,4 @@ const Wishlist = () => {
   );
 };
 
-export default Wishlist;
+export default memo(Wishlist);

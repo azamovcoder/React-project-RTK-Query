@@ -1,6 +1,6 @@
 import "./Home.scss";
 
-import React, { Fragment } from "react";
+import React, { Fragment, memo } from "react";
 
 import FeaturedProducts from "./components/FeaturedProducts/FeaturedProducts";
 import Hero from "./components/Hero/Hero";
@@ -24,4 +24,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default memo(Home);

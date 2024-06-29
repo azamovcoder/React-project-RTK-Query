@@ -1,6 +1,6 @@
 import "./RelatedProducts.scss";
 
-import React, { Fragment } from "react";
+import React, { Fragment, memo } from "react";
 
 import ProductCard from "../../../../components/productCard/ProductCard";
 import { useGetProductsQuery } from "../../../../context/api/productApi";
@@ -30,4 +30,4 @@ const RelatedProducts = () => {
   );
 };
 
-export default RelatedProducts;
+export default memo(RelatedProducts);

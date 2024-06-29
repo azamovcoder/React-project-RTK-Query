@@ -3,7 +3,7 @@ import "./SinglePage.scss";
 import { FaFacebookF, FaTwitter } from "react-icons/fa";
 import { FaRegStar, FaRegStarHalfStroke, FaStar } from "react-icons/fa6";
 import { IoCartOutline, IoHeartOutline } from "react-icons/io5";
-import React, { Fragment, useState } from "react";
+import React, { Fragment, memo, useEffect, useState } from "react";
 
 import ColorSelector from "./components/ColorSelector/ColorSelector";
 import RelatedProducts from "./components/RelatedProducts/RelatedProducts";
@@ -46,6 +46,10 @@ const SinglePage = () => {
 
     return res;
   };
+
+  useEffect(() => {
+    window.scroll(0, 0);
+  }, []);
 
   return (
     <Fragment>
@@ -153,4 +157,4 @@ const SinglePage = () => {
   );
 };
 
-export default SinglePage;
+export default memo(SinglePage);

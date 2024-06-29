@@ -1,6 +1,6 @@
 import "./ColorSelector.scss";
 
-import React, { useState } from "react";
+import React, { memo, useState } from "react";
 
 const ColorSelector = ({ colors, selectedColor, onColorSelect }) => {
   return (
@@ -29,4 +29,4 @@ const ColorSelector = ({ colors, selectedColor, onColorSelect }) => {
   );
 };
 
-export default ColorSelector;
+export default memo(ColorSelector);
