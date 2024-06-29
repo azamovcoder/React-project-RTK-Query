@@ -9,6 +9,7 @@ import {
 } from "react-icons/fa6";
 import { IoCart, IoCartOutline } from "react-icons/io5";
 import React, { Fragment } from "react";
+import { ToastContainer, toast } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
 
 import { NavLink } from "react-router-dom";
@@ -61,7 +62,10 @@ const ProductCard = ({ image, title, rating, price, product, id }) => {
             </button>
             <button
               disabled={cartData?.some((el) => el.id === product.id)}
-              onClick={() => dispatch(addToCart(product))}
+              onClick={() => {
+                dispatch(addToCart(product)),
+                  toast.success("Add to Cart successfully!");
+              }}
             >
               {cartData?.some((el) => el.id === product.id) ? (
                 <IoCart />

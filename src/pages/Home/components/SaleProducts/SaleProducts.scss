@@ -1,63 +1,53 @@
-.sale__products__frames{
-    display: flex;
-    transform: translateY(-30%);
+.sale__products__frames {
+  display: flex;
+  transform: translateY(-30%);
 }
-.sale__products__frame{
-    width: 400px;
-    padding: 10px;
-    height: 300px;
+.sale__products__frame {
+  width: 400px;
+  padding: 10px;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  &__price {
     display: flex;
-    flex-direction: column;
     justify-content: space-between;
-    &__price{
-        display: flex;
-        justify-content: space-between;
-        
-    }
-    &__oldPrice__all{
-        display: flex;
-        gap: 5px;
-    }
-    &__oldPrice{
-
-        text-decoration: line-through;
-    }
-    &__sale__price{
-        font-size: 25px;
-        font-weight: 600;
-        color: #40BFFF;
-    }
-    span{
-        color: red;
-    }
-
+  }
+  &__oldPrice__all {
+    display: flex;
+    gap: 5px;
+  }
+  &__oldPrice {
+    text-decoration: line-through;
+  }
+  &__sale__price {
+    font-size: 25px;
+    font-weight: 600;
+    color: #40bfff;
+  }
+  span {
+    color: red;
+  }
 }
 
 @media (max-width: 1040px) {
-    .sale__products__frames {
-        overflow-x: scroll;
-        /* Yon tomonga scroll qilish 1040px kenglikda ta'minlanadi */
-    }
-
-    .sale__products__frame {
-        flex: 0 0 auto;
-    }
+  .sale__products__frame:nth-child(3) {
+    display: none;
+  }
 }
-
-@media (max-width:700px) {
-    .sale__products__frame{
-        width: 300px;
-    }
+@media (max-width: 700px) {
+  .sale__products__frame:nth-child(2) {
+    display: none;
+  }
+  .sale__products__frames {
+    justify-content: center;
+  }
 }
-@media (max-width:350px) {
-    .sale__products__frame {
-        width: 250px;
-        height: 150px;
-        h3{
-            font-size: 14px;
-        }
-        p{
-            font-size: 12px;
-        }
-    }
+@media (max-width: 400px) {
+  .sale__products__frame:nth-child(1) {
+    display: none;
+  }
+  .sale__products__frames {
+    justify-content: center;
+  }
 }

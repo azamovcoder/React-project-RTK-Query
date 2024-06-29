@@ -1,6 +1,7 @@
 import "./CartModal.scss";
 
 import React, { Fragment, memo, useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
 
 import { BsBank } from "react-icons/bs";
 import { FaArrowLeft } from "react-icons/fa";
@@ -33,7 +34,13 @@ const CarModal = ({ setModal }) => {
     api.send();
 
     e.target.reset();
+    setFname("");
+    setLname("");
+    setEmail("");
+    setInfo("");
+    setPhone("");
     setModal(false);
+    toast.success("Order sent successfully!");
   };
   return (
     <Fragment>
@@ -120,6 +127,7 @@ const CarModal = ({ setModal }) => {
           <button className="cart__modal__form__button">Go to Payment</button>
         </form>
       </div>
+      <ToastContainer />
     </Fragment>
   );
 };

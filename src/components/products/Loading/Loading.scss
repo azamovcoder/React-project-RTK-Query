@@ -1,0 +1,86 @@
+.loading__cards {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+.loading__card {
+  width: 23%;
+  height: 350px;
+  background: #eee;
+  border-radius: 5px;
+}
+.bg__animation {
+  background: linear-gradient(90deg, #9f3131, #ddd, #eee);
+  background-size: 200%;
+  animation: bgMove 1s linear 0s infinite;
+}
+@keyframes bgMove {
+  to {
+    background-position: 200%;
+  }
+}
+
+@media (max-width: 1100px) {
+  .loading__card {
+    &__img {
+      height: 200px;
+    }
+    &__prices__sale__price {
+      display: none;
+    }
+  }
+}
+@media (max-width: 900px) {
+  .loading__card {
+    h4 {
+      font-size: 14px;
+    }
+    width: 30%;
+  }
+}
+@media (max-width: 600px) {
+  .loading__card {
+    &__img {
+      height: 150px;
+    }
+    &__buttons {
+      gap: 10px;
+      button {
+        font-size: 14px;
+        padding: 6px;
+      }
+    }
+    &__info {
+      padding: 5px;
+    }
+    &__prices {
+      p {
+        font-size: 14px;
+      }
+    }
+  }
+}
+@media (max-width: 500px) {
+  .loading__card {
+    width: 48%;
+  }
+}
+
+@media (max-width: 400px) {
+  .loading__card {
+    &__img {
+      height: 100px;
+    }
+  }
+}
+
+@media (max-width: 320px) {
+  .loading__card {
+    width: 90%;
+    margin: 0 auto;
+    &__img {
+      height: 200px;
+    }
+  }
+}

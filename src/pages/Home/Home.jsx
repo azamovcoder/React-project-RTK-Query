@@ -2,6 +2,7 @@ import "./Home.scss";
 
 import React, { Fragment, memo } from "react";
 
+import Categories from "./components/Categories/Categories";
 import FeaturedProducts from "./components/FeaturedProducts/FeaturedProducts";
 import Hero from "./components/Hero/Hero";
 import LatestNews from "./components/LastestNews/LastestNews";
@@ -15,6 +16,7 @@ const Home = () => {
     <Fragment>
       <Hero />
       <SaleProducts />
+      <Categories />
       <Product />
       <ProductShowcase />
       <OurServices />
