@@ -144,8 +144,28 @@
 @media (max-width: 400px) {
   .product__card {
     &__img {
-      height: 100px;
+      height: 150px;
+      img {
+        object-fit: contain;
+      }
     }
+    &__buttons {
+      left: 38%;
+      top: -27%;
+      background: transparent;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      button {
+        font-size: 14px;
+        padding: 5px;
+      }
+    }
+  }
+
+  .product__card__img:hover .product__card__buttons {
+    left: 38%;
+    top: -27%;
   }
 }
 

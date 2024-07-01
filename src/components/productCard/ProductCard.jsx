@@ -55,7 +55,7 @@ const ProductCard = ({ image, title, rating, price, product, id }) => {
               onClick={() => dispatch(toggleHeart(product))}
             >
               {wishlistData.some((el) => el.id === product.id) ? (
-                <FaHeart color="crimson" />
+                <FaHeart color="#33a0ff" />
               ) : (
                 <FaRegHeart />
               )}

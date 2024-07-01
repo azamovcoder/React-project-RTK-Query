@@ -50,7 +50,7 @@ const SinglePage = () => {
 
   useEffect(() => {
     window.scroll(0, 0);
-  }, []);
+  }, [Id]);
 
   return (
     <Fragment>

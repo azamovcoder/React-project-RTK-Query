@@ -1,6 +1,7 @@
 import "./Login.scss";
 
 import React, { Fragment, memo, useEffect } from "react";
+import { ToastContainer, toast } from "react-toastify";
 import { useGetUsersQuery, useSignInMutation } from "../../context/api/userApi";
 
 import { setToken } from "../../context/slices/authSlice";
@@ -12,9 +13,10 @@ let initialState = {
   username: "johnd",
   password: "m38rmF$",
 };
+
 const Login = () => {
   const { formData, handleChange } = useGetValue(initialState);
-  const [signIn, { isSuccess, data }] = useSignInMutation();
+  const [signIn, { isSuccess, data, isError }] = useSignInMutation();
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -30,6 +32,12 @@ const Login = () => {
       navigate("/admin");
     }
   }, [isSuccess]);
+
+  useEffect(() => {
+    if (isError) {
+      toast.error("Username or Password is wrong. Please try again!");
+    }
+  }, [isError]);
 
   useEffect(() => {
     window.scroll(0, 0);
@@ -62,6 +70,7 @@ const Login = () => {
           <button>LOGIN</button>
         </form>
       </div>
+      <ToastContainer />
     </Fragment>
   );
 };

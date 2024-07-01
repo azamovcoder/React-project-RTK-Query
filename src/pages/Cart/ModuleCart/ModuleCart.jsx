@@ -1,34 +1,45 @@
-import "./CartModal.scss";
+import "./ModuleCart.scss";
 
 import React, { Fragment, memo, useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
+import { useDispatch, useSelector } from "react-redux";
 
 import { BsBank } from "react-icons/bs";
 import { FaArrowLeft } from "react-icons/fa";
 import { IoCardOutline } from "react-icons/io5";
 import { PiPaypalLogoFill } from "react-icons/pi";
 import { VscError } from "react-icons/vsc";
-import { useGetValue } from "../../../../hooks/useGetValue";
+import { deleteAllCart } from "../../../context/slices/cartSlice";
 
 const BOT__TOKEN = "7276278325:AAFTjpozX4zmxiPt4hY3Uf_Rb6eUD-sfeCk";
 const CHAT__ID = "-4253735131";
 
-const CarModal = ({ setModal }) => {
+const ModuleCart = ({ setModal, data, totalPrice }) => {
   const [fname, setFname] = useState("");
   const [lname, setLname] = useState("");
   const [email, setEmail] = useState("");
   const [info, setInfo] = useState("");
   const [phone, setPhone] = useState("");
+  const dispatch = useDispatch();
+  const cartData = useSelector((state) => state.cart.value);
 
   const handleSendMessage = (e) => {
     e.preventDefault();
+
     let text = "User: %0A%0A";
     text += `FName: ${fname} %0A`;
     text += `LName: ${lname} %0A`;
     text += `Email: ${email} %0A`;
     text += `phone: ${phone} %0A`;
-    text += `Message: ${info}`;
-    let url = ` https://api.telegram.org/bot${BOT__TOKEN}/sendMessage?chat_id=${CHAT__ID}&text=${text}`;
+    text += `Message: ${info} %0A`;
+
+    data.forEach((product) => {
+      text += `Product: ${product.title} %0A`;
+      text += `${product.price}USD %0A%0A`;
+    });
+    text += `Total: ${totalPrice}USD %0A`;
+
+    let url = `https://api.telegram.org/bot${BOT__TOKEN}/sendMessage?chat_id=${CHAT__ID}&text=${text}`;
     let api = new XMLHttpRequest();
     api.open("GET", url, true);
     api.send();
@@ -41,7 +52,10 @@ const CarModal = ({ setModal }) => {
     setPhone("");
     setModal(false);
     toast.success("Order sent successfully!");
+    dispatch(deleteAllCart(cartData));
+    alert("Malmor Saqlandi");
   };
+
   return (
     <Fragment>
       <div className="cart__modal">
@@ -55,11 +69,11 @@ const CarModal = ({ setModal }) => {
           className="cart__modal__form"
         >
           <div className="cart__modal__form__head">
-            <button>
+            <button onClick={() => setModal(false)}>
               <FaArrowLeft color="#40BFFF" />
             </button>
             <h2>Make Payment</h2>
-            <button>
+            <button onClick={() => setModal(false)}>
               <VscError color="#40BFFF" />
             </button>
           </div>
@@ -132,4 +146,4 @@ const CarModal = ({ setModal }) => {
   );
 };
 
-export default memo(CarModal);
+export default memo(ModuleCart);

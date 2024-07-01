@@ -4,11 +4,12 @@ import React, { Fragment, memo, useEffect, useState } from "react";
 import {
   addToCart,
   decrementCart,
+  deleteAllCart,
   remove,
 } from "../../context/slices/cartSlice";
 import { useDispatch, useSelector } from "react-redux";
 
-import CarModal from "./components/CartModal/CarModal";
+import ModuleCart from "./ModuleCart/ModuleCart";
 import { NavLink } from "react-router-dom";
 import { VscError } from "react-icons/vsc";
 
@@ -19,12 +20,10 @@ const Cart = () => {
   const [totalPrice, setTotalPrice] = useState(0);
   const [modal, setModal] = useState(false);
   const cartData = useSelector((state) => state.cart.value);
-  console.log(cartData);
 
   useEffect(() => {
     let total = cartData?.reduce((a, b) => a + b.quantity * b.price, 0);
 
-    console.log(total);
     setTotalPrice(total);
   }, [cartData]);
 
@@ -136,7 +135,15 @@ const Cart = () => {
                 </button>
               </div>
             </div>
-            {modal ? <CarModal setModal={setModal} /> : <></>}
+            {modal ? (
+              <ModuleCart
+                totalPrice={totalPrice}
+                data={cartData}
+                setModal={setModal}
+              />
+            ) : (
+              <></>
+            )}
           </>
         ) : (
           <div className="wishlist__empty">
